@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+  
+  .card-container {
+    perspective: 1000px; /* enable 3D perspective for flipping effect */
+  }
+  
+  .card {
+    width: 300px;
+    height: 400px;
+    margin: 10px auto;
+    position: relative;
+    transform-style: preserve-3d; /* enable 3D transformations */
+    transition: transform 0.8s ease-in-out;
+  }
+  
+  .card-front,
+  .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* hide back face initially */
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-front {
+    background-color: #ff8f8f;
+    
+  }
+  
+  .card-back {
+    background-color: #6882f5;
+    transform: rotateY(180deg); /* rotate back face 180deg initially */
+  }
+  
+  .card:hover,
+  .card:focus {
+    transform: scale(1.05); /* slight hover effect */
+  }
+  
+  #flip-card:active {
+    transform: translateY(5px); /* small press effect */
+  }
+  
+  .card.flipped {
+    transform: rotateY(180deg); /* rotate the entire card 180deg when flipped */
+  }
+  
+  /* Adjusted CSS rule to hide the front content when flipped */
+  .card.flipped .card-front {
+    transform: rotateY(180deg); /* rotate front content along with the card */
+  }
+  
+  /* Confetti Container Styles */
+  #confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Position the confetti behind the card */
+  }
+  
+/* Adjusted CSS rule to hide the front content when flipped */
+.card.flipped .card-front {
+    transform: rotateY(0deg); /* rotate front content along with the card */
+    z-index: -1; /* Set z-index to -1 to hide front content when flipped */
+}
+
+.card.flipped .card-back {
+    transform: rotateY(180deg); /* rotate back content along with the card */
+    z-index: 1; /* Set z-index to 1 to bring back content to the front when flipped */
+}
+
+.card-back img {
+    height: 150px; /* Reduce the height by 25px */
+    width: auto; /* Maintain aspect ratio */
+}
